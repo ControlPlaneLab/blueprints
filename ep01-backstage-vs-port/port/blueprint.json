@@ -1,0 +1,45 @@
+{
+  "identifier": "microservice",
+  "title": "Microservice",
+  "icon": "Microservice",
+  "schema": {
+    "properties": {
+      "language": {
+        "type": "string",
+        "title": "Programming Language",
+        "enum": ["golang", "typescript", "python", "rust"]
+      },
+      "tier": {
+        "type": "string",
+        "title": "Service Tier",
+        "default": "Tier-2",
+        "enum": ["Tier-1 (Mission Critical)", "Tier-2 (Core)", "Tier-3 (Internal)"]
+      },
+      "onCallPager": {
+        "type": "string",
+        "title": "PagerDuty Escalation Policy",
+        "format": "url"
+      },
+      "replicas": {
+        "type": "number",
+        "title": "Running Pod Replicas",
+        "default": 3
+      }
+    },
+    "required": ["language", "tier"]
+  },
+  "relations": {
+    "database": {
+      "title": "Associated Database",
+      "target": "cloudDatabase",
+      "required": false,
+      "many": false
+    },
+    "ownerTeam": {
+      "title": "Owner Team",
+      "target": "team",
+      "required": true,
+      "many": false
+    }
+  }
+}

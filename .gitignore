@@ -1,0 +1,42 @@
+# OS & Editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Kubernetes & Local Clusters
+*.kubeconfig
+kubeconfig*
+.kube/
+kind-config.yaml.tmp
+
+# Terraform & OpenTofu
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform/
+.terraform.lock.hcl
+
+# Secrets & Environment Variables
+.env
+.env.*
+!.env.example
+secrets.yaml
+*-secret.yaml
+private-key.pem
+*.key
+
+# Temporary artifacts & builds
+node_modules/
+dist/
+build/
+*.log

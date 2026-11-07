@@ -1,0 +1,38 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: order-service
+  description: Core transactional order ingestion and state machine
+  annotations:
+    github.com/project-slug: control-plane-lab/order-service
+    backstage.io/techdocs-ref: dir:.
+    kubernetes.io/ingress-name: order-service-ingress
+  tags:
+    - golang
+    - grpc
+    - tier-1
+  links:
+    - url: https://grafana.internal.cpl.io/d/order-service
+      title: Grafana Dashboard
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: team-checkout
+  system: ecommerce-core
+  providesApis:
+    - order-grpc-api
+  consumesApis:
+    - payment-gateway-api
+  dependsOn:
+    - resource:order-postgres-cluster
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: order-postgres-cluster
+  description: Managed RDS PostgreSQL Aurora cluster provisioned via Crossplane
+spec:
+  type: database
+  owner: platform-core
+  system: ecommerce-core
